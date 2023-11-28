@@ -1,0 +1,15 @@
+{
+	{$CADDY_GLOBAL_OPTIONS}
+}
+
+{$SERVER_NAME:localhost}
+
+{$CADDY_EXTRA_CONFIG}
+
+route {
+	root * /var/www/html/public
+
+	php_fastcgi unix//var/run/php/php-fpm.sock
+	encode zstd gzip
+	file_server
+}
